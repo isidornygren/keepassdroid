@@ -313,15 +313,6 @@ public abstract class EntryEditActivity extends LockCloseHideActivity {
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch ( item.getItemId() ) {
-		case R.id.menu_donate:
-			try {
-				Util.gotoUrl(this, R.string.donate_url);
-			} catch (ActivityNotFoundException e) {
-				Toast.makeText(this, R.string.error_failed_to_launch_link, Toast.LENGTH_LONG).show();
-				return false;
-			}
-			
-			return true;
 		case R.id.menu_toggle_pass:
 			if ( mShowPassword ) {
 				item.setTitle(R.string.menu_showpass);

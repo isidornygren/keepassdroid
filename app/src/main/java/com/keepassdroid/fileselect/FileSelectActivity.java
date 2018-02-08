@@ -331,7 +331,7 @@ public class FileSelectActivity extends Activity {
 
 	private void fillData() {
 		// Set the initial value of the filename
-		EditText filename = (EditText) findViewById(R.id.file_filename);
+		TextView filename = (TextView) findViewById(R.id.file_filename);
 		filename.setText(Environment.getExternalStorageDirectory().getAbsolutePath() + getString(R.string.default_file_path));
 		
 		mAdapter = new ArrayAdapter<String>(this, R.layout.file_row, R.id.file_filename, fileHistory.getDbList());
@@ -498,21 +498,6 @@ public class FileSelectActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_donate:
-			try {
-				Util.gotoUrl(this, R.string.donate_url);
-			} catch (ActivityNotFoundException e) {
-				Toast.makeText(this, R.string.error_failed_to_launch_link, Toast.LENGTH_LONG).show();
-				return false;
-			}
-			
-			return true;
-			
-		case R.id.menu_about:
-			AboutDialog dialog = new AboutDialog(this);
-			dialog.show();
-			return true;
-			
 		case R.id.menu_app_settings:
 			AppSettingsActivity.Launch(this);
 			return true;

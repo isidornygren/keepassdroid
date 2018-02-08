@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -78,8 +79,8 @@ public class EntryEditActivityV4 extends EntryEditActivity {
 		super.onCreate(savedInstanceState);
 		
 		scroll = (ScrollView) findViewById(R.id.entry_scroll);
-		
-		ImageButton add = (ImageButton) findViewById(R.id.add_advanced);
+
+		Button add = (Button) findViewById(R.id.add_advanced);
 		add.setVisibility(View.VISIBLE);
 		add.setOnClickListener(new View.OnClickListener() {
 			
@@ -105,13 +106,12 @@ public class EntryEditActivityV4 extends EntryEditActivity {
 		ImageButton iconPicker = (ImageButton) findViewById(R.id.icon_button);
 		iconPicker.setVisibility(View.GONE);
 		
-		View divider = (View) findViewById(R.id.divider_title);
-		RelativeLayout.LayoutParams lp_div = (RelativeLayout.LayoutParams) divider.getLayoutParams();
-		lp_div.addRule(RelativeLayout.BELOW, R.id.entry_title);
-		
+		//View divider = (View) findViewById(R.id.divider_title);
+		//LinearLayout.LayoutParams lp_div = (LinearLayout.LayoutParams) divider.getLayoutParams();
+
 		View user_label = (View) findViewById(R.id.entry_user_name_label);
-		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) user_label.getLayoutParams();
-		lp.addRule(RelativeLayout.BELOW, R.id.divider_title);
+		//RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) user_label.getLayoutParams();
+		//lp.addRule(RelativeLayout.BELOW, R.id.divider_title);
 	}
 
 	@Override
@@ -177,9 +177,9 @@ public class EntryEditActivityV4 extends EntryEditActivity {
 	}
 	
 	public void deleteAdvancedString(View view) {
-		EntryEditSection section = (EntryEditSection) view.getParent();
+		EntryEditSection section = (EntryEditSection) view.getParent().getParent().getParent();
 		LinearLayout container = (LinearLayout) findViewById(R.id.advanced_container);
-		
+
 		for (int i = 0; i < container.getChildCount(); i++) {
 			EntryEditSection ees = (EntryEditSection) container.getChildAt(i);
 			if (ees == section) {

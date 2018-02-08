@@ -34,21 +34,25 @@
         android:gravity="center_vertical"
         android:padding="2sp"
         style="@style/WhiteOnBlack">
-            <TextView android:id="@+id/group_name" 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_weight="1"
-                android:text="@string/root"
-                style="@style/WhiteOnBlack"
-            />
-            <ImageView android:id="@+id/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic99_blank"
-                style="@style/WhiteOnBlack"
-            />
+
+        <ImageView
+            android:id="@+id/icon"
+            style="@style/WhiteOnBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_folder_black_24dp" />
+
+        <TextView
+            android:id="@+id/group_name"
+            style="@style/WhiteOnBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_weight="1"
+            android:text="@string/root"
+            android:textColor="@color/icon_text"
+            android:textStyle="italic" />
     </LinearLayout>
 </LinearLayout>

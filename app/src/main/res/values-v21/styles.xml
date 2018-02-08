@@ -18,17 +18,17 @@
   along with KeePassDroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <style name="NoTitleBar" parent="android:Theme.Material"></style>
-    <style name="Dialog" parent="android:Theme.Material.Dialog"></style>
-	<style name="GroupTextSmall" parent="android:Theme.Material">
+    <style name="NoTitleBar" parent="android:Theme.Material.Light.NoActionBar"></style>
+    <style name="Dialog" parent="Theme.AppCompat.Light.Dialog"></style>
+	<style name="GroupTextSmall" parent="android:Theme.Material.Light">
 		<item name="android:textColor">@color/group</item>
 		<item name="android:textSize">15sp</item>
 	</style>
-	<style name="GroupText" parent="android:Theme.Material">
+	<style name="GroupText" parent="android:Theme.Material.Light">
 		<item name="android:textColor">@color/group</item>
 		<item name="android:textSize">20sp</item>
 	</style>
-	<style name="GroupTextLarge" parent="android:Theme.Material">
+	<style name="GroupTextLarge" parent="android:Theme.Material.Light">
 		<item name="android:textColor">@color/group</item>
 		<item name="android:textSize">28sp</item>
 	</style>
@@ -62,5 +62,9 @@ name="android:textColor">@android:color/primary_text_dark</item>
 	</style>
 	<style name="EntryItem">
 		<item name="android:padding">5sp</item>
+	</style>
+
+	<style name="KeePassMaterial" parent="Theme.AppCompat.Light.NoActionBar" >
+		<item name="android:colorAccent">@android:color/holo_green_dark</item>
 	</style>
 </resources>

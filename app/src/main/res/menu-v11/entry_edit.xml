@@ -22,8 +22,4 @@
         android:title="@string/menu_showpass"
         android:showAsAction="ifRoom"
     />
-    <item android:id="@+id/menu_donate"
-        android:title="@string/menu_donate"
-        android:showAsAction="ifRoom"
-    />
 </menu>
