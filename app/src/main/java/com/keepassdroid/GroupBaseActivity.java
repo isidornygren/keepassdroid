@@ -110,10 +110,14 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 		mList.setTextFilterEnabled(true);
 		
 	}
-	
+
+	/**
+	 * Sets the title in the second toolbar at the top
+	 */
 	protected void setGroupTitle() {
 		if ( mGroup != null ) {
-			String name = mGroup.getName();
+			//String name = mGroup.getName();
+			String name = mGroup.getDirectory();
 			if ( name != null && name.length() > 0 ) {
 				TextView tv = (TextView) findViewById(R.id.group_name);
 				if ( tv != null ) {
@@ -208,19 +212,18 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 			setResult(KeePass.EXIT_LOCK);
 			finish();
 			return true;
-		
+		case R.id.menu_add_group:
+			GroupEditActivity.Launch(GroupBaseActivity.this);
+			return true;
 		case R.id.menu_search:
 			onSearchRequested();
 			return true;
-			
 		case R.id.menu_app_settings:
 			AppSettingsActivity.Launch(this);
 			return true;
-
 		case R.id.menu_change_master_key:
 			setPassword();
 			return true;
-			
 		case R.id.menu_sort:
 			toggleSort();
 			return true;

@@ -21,28 +21,32 @@
   android:id="@+id/parent"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-	<!--  Title -->	
-	<LinearLayout android:id="@+id/title_block"
-	  android:layout_alignParentTop="true"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content"
-	  android:gravity="center_vertical"
-	  android:padding="2dp"
-	  style="@style/WhiteOnBlack">
-		<TextView android:id="@+id/entry_title"
-		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
-		  android:layout_gravity="left|center_vertical"
-		  android:layout_weight="1"
-		  android:minHeight="32dp"
-		  style="@style/ElementTextTitle"/>
-		<ImageView android:id="@+id/entry_icon"
-		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
-		  android:layout_gravity="right|center_vertical"
-		  android:scaleType="fitXY"
-		  android:src="@drawable/ic99_blank"
-		  style="@style/WhiteOnBlack"/>
+	<!--  Title -->
+	<LinearLayout
+		android:id="@+id/title_block"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:gravity="center_vertical"
+		android:padding="2dp">
+
+		<TextView
+			android:id="@+id/entry_title"
+			style="@style/Base.TextAppearance.AppCompat"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="left|center_vertical"
+			android:layout_weight="1"
+			android:minHeight="32dp" />
+
+		<ImageView
+			android:id="@+id/entry_icon"
+			style="@style/WhiteOnBlack"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="right|center_vertical"
+			android:scaleType="fitXY"
+			android:src="@drawable/ic99_blank" />
 	</LinearLayout> 
 	<Button android:id="@+id/entry_edit"
 	  android:text="@string/menu_edit"

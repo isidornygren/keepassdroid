@@ -20,20 +20,20 @@
 package com.keepassdroid;
 
 import android.preference.PreferenceActivity;
-
 import com.keepassdroid.timeout.TimeoutHelper;
 
 public abstract class LockingPreferenceActivity extends PreferenceActivity {
 
+
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		
 		TimeoutHelper.pause(this);
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 
 		TimeoutHelper.resume(this);

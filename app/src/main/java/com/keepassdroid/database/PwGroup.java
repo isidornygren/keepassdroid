@@ -47,6 +47,18 @@ public abstract class PwGroup {
 		return icon;
 	}
 
+	/**
+	 * Gets the directory as a string in the form /root/directory
+	 * @return String the directory in the form of a string
+	 */
+	public String getDirectory() {
+		String d = "";
+		if(getParent() != null) {
+			d = getParent().getDirectory() + "/";
+		}
+		return d + getName();
+	}
+
 	public void sortGroupsByName() {
 		Collections.sort(childGroups, new GroupNameComparator());
 	}

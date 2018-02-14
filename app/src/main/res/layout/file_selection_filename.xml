@@ -21,63 +21,78 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content">
 
-	<EditText
-		android:id="@+id/file_filename"
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
-		android:layout_below="@+id/label_open_by_filename"
-		android:layout_toLeftOf="@+id/browse_button"
-		android:layout_weight="1"
-		android:singleLine="true" />
+		android:orientation="vertical">
 
-	<ImageButton
-		android:id="@+id/browse_button"
-		android:layout_width="124dp"
-		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:layout_below="@+id/label_open_by_filename"
-		android:layout_weight="1"
-		android:src="@drawable/ic_launcher_folder_small" />
+		<TextView
+			android:id="@+id/label_open_by_filename"
+			style="?android:attr/listSeparatorTextViewStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="false"
+			android:layout_weight="1"
+			android:text="@string/enter_filename" />
 
-	<Button
-		android:id="@+id/create"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
-		android:layout_below="@+id/browse_button"
-		android:layout_weight="1"
-		android:width="100sp"
-		android:text="@string/menu_create" />
+		<TextView
+			android:id="@+id/label_warning"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="false"
+			android:layout_weight="1"
+			android:textSize="20sp"
+			android:visibility="gone" />
 
-	<Button
-		android:id="@+id/open"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignBaseline="@+id/create"
-		android:layout_alignBottom="@+id/create"
-		android:layout_toRightOf="@+id/create"
-		android:layout_weight="1"
-		android:width="100sp"
-		android:text="@string/menu_open" />
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:orientation="horizontal">
 
-	<TextView
-		android:id="@+id/label_open_by_filename"
-		style="?android:attr/listSeparatorTextViewStyle"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
-		android:layout_marginTop="33dp"
-		android:text="@string/enter_filename" />
+			<EditText
+				android:id="@+id/file_filename"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="false"
+				android:layout_weight="1"
+				android:singleLine="true" />
 
-	<TextView
-		android:id="@+id/label_warning"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_above="@+id/label_open_by_filename"
-		android:layout_alignParentLeft="true"
-		android:layout_weight="1"
-		android:textSize="20sp"
-		android:visibility="visible" />
+			<Button
+				android:id="@+id/browse_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="0"
+				android:drawableLeft="@drawable/ic_folder_black_24dp"
+				android:text="@string/database" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/open"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="0"
+				android:text="@string/menu_open" />
+
+			<Button
+				android:id="@+id/create"
+				style="@style/Base.Widget.AppCompat.Button.Colored"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="false"
+				android:layout_below="@+id/browse_button"
+				android:layout_gravity="right"
+				android:layout_weight="0"
+				android:gravity="center_vertical|center_horizontal"
+				android:text="@string/menu_create" />
+
+		</LinearLayout>
+
+	</LinearLayout>
 
 </RelativeLayout>

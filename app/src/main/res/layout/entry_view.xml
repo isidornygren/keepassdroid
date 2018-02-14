@@ -27,13 +27,17 @@
 	  android:layout_height="wrap_content"
 	  android:padding="2dp"
 	  style="@style/WhiteOnBlack">
-		<TextView android:id="@+id/entry_title"
-		  android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"
-		  android:layout_gravity="left|center_vertical"
-		  android:layout_weight="1"
-		  android:minHeight="32dp"
-		  style="@style/ElementTextTitle"/>
+
+		<TextView
+			android:id="@+id/entry_title"
+			style="@style/Base.TextAppearance.AppCompat"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="left|center_vertical"
+			android:layout_weight="1"
+			android:minHeight="32dp"
+			android:text="Key title"
+			android:textColor="@color/icon_text" />
 		<ImageView android:id="@+id/entry_icon"
 		  android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"

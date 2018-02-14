@@ -44,7 +44,7 @@ public class GroupViewOnlyView extends RelativeLayout {
 		inflater.inflate(R.layout.group_add_entry, this);
 
 		// Hide the buttons
-		View addGroup = findViewById(R.id.add_group);
+		/*View addGroup = findViewById(R.id.menu_add_group);
 		addGroup.setVisibility(INVISIBLE);
 		
 		View addEntry = findViewById(R.id.add_entry);
@@ -55,7 +55,7 @@ public class GroupViewOnlyView extends RelativeLayout {
 		
 		View list = findViewById(R.id.group_list);
 		LayoutParams lp = (RelativeLayout.LayoutParams) list.getLayoutParams();
-		lp.addRule(ALIGN_PARENT_BOTTOM, TRUE);
+		lp.addRule(ALIGN_PARENT_BOTTOM, TRUE);*/
 		
 		
 	}

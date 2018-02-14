@@ -95,7 +95,7 @@
         <activity android:name="com.keepassdroid.EntryEditActivityV4" android:configChanges="orientation|keyboardHidden"
             android:theme="@style/KeePassMaterial"></activity>
         <activity android:name="com.keepassdroid.GroupEditActivity" android:theme="@style/Dialog"></activity>
-        <activity android:name="com.keepassdroid.IconPickerActivity" android:theme="@style/NoTitleBar"></activity>
+        <activity android:name="com.keepassdroid.IconPickerActivity" android:theme="@style/KeePassMaterial"></activity>
         <activity android:name="com.keepassdroid.search.SearchResults" android:launchMode="standard"
             android:theme="@style/KeePassMaterial">
             <intent-filter>

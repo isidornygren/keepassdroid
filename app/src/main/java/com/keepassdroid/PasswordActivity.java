@@ -209,9 +209,18 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
         confirmationView = (TextView) findViewById(R.id.fingerprint_label);
         passwordView = (EditText) findViewById(R.id.password);
 
+        // Add back button to action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         new InitTask().execute(i);
 
         initForFingerprint();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+       finish();
+       return true;
     }
 
     @Override
@@ -338,7 +347,7 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
 
                     } else if (mode == Cipher.DECRYPT_MODE) {
 
-                        // retrieve the encrypted value from preferences
+                        // retrieve the encrypted value from preferences_bak
                         final String encryptedValue = prefsNoBackup.getString(getPreferenceKeyValue(), null);
                         if (encryptedValue != null) {
                             fingerPrintHelper.decryptData(encryptedValue);

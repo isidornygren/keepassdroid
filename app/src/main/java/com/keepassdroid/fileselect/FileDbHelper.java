@@ -85,7 +85,7 @@ public class FileDbHelper {
 				
 				db.insert(FILE_TABLE, null, vals);
 				
-				// Clear old preferences
+				// Clear old preferences_bak
 				deletePrefs(settings);
 				
 			}

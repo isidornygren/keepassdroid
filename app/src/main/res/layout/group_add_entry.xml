@@ -17,34 +17,49 @@
   You should have received a copy of the GNU General Public License
   along with KeePassDroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-	<com.keepassdroid.view.GroupHeaderView
-	  android:id="@+id/group_header"
-	  android:layout_width="wrap_content"
-	  android:layout_height="wrap_content"/>
-	<Button android:id="@+id/add_group"
-	  android:layout_width="wrap_content"
-	  android:layout_height="wrap_content"
-	  android:layout_alignParentBottom="true"
-	  android:text="@string/add_group"/>
-	<Button android:id="@+id/add_entry"
-	  android:layout_width="wrap_content"
-	  android:layout_height="wrap_content"
-	  android:layout_toRightOf="@id/add_group"
-	  android:layout_alignParentBottom="true"
-	  android:text="@string/add_entry"/>
-	<ImageView android:id="@+id/divider2"
-	  android:layout_width="fill_parent"
-	  android:layout_height="wrap_content"
-	  android:layout_above="@id/add_entry"
-	  android:scaleType="fitXY"
-	  android:tint="@color/blue_highlight"
-	  android:src="@android:drawable/divider_horizontal_dark"/>
-	<ListView android:id="@+id/group_list"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_above="@id/divider2"
-      android:layout_below="@id/group_header"/>
-</RelativeLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/directory_toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/colorPrimary"
+		android:elevation="5dp"
+		android:minHeight="?attr/actionBarSize"
+		android:theme="?attr/actionBarTheme">
+
+		<com.keepassdroid.view.GroupHeaderView
+			android:id="@+id/group_header"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:elevation="10dp" />
+	</android.support.v7.widget.Toolbar>
+
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/add_entry"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentRight="true"
+			android:layout_margin="@dimen/margin_medium"
+			android:clickable="true"
+			app:srcCompat="@drawable/ic_key_add_white_24dp" />
+
+		<ListView
+			android:id="@+id/group_list"
+			android:layout_width="fill_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/divider2"
+			android:layout_below="@id/group_header"
+			android:divider="@null"
+			android:dividerHeight="0dp" />
+	</RelativeLayout>
+</LinearLayout>

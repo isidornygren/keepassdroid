@@ -65,7 +65,7 @@ name="android:textColor">@android:color/primary_text_dark</item>
 	</style>
 
 	<style name="KeePassMaterial" parent="Theme.AppCompat.Light.DarkActionBar" >
-		<item name="android:colorAccent">@android:color/holo_green_dark</item>
+		<item name="android:colorAccent">?attr/colorAccent</item>
 		<item name="colorPrimaryDark">?attr/colorAccent</item>
 		<item name="colorPrimary">?attr/colorAccent</item>
 	</style>
