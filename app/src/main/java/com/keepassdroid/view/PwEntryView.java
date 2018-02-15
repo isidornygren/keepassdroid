@@ -72,7 +72,7 @@ public class PwEntryView extends ClickView {
 		TextView title = ev.findViewById(R.id.entry_text);
 		title.setText(pw.getDisplayTitle());
 		// Set password url
-		TextView url = ev.findViewById(R.id.entry_url);
+		TextView url = ev.findViewById(R.id.entry_description);
 		url.setText(pw.getUrl());
 	}
 	

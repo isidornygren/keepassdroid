@@ -20,7 +20,6 @@
 package com.keepassdroid;
 
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -37,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.keepass.KeePass;
 import com.android.keepass.R;
@@ -47,7 +45,6 @@ import com.keepassdroid.compat.EditorCompat;
 import com.keepassdroid.database.PwGroup;
 import com.keepassdroid.database.edit.OnFinish;
 import com.keepassdroid.settings.AppSettingsActivity;
-import com.keepassdroid.utils.Util;
 import com.keepassdroid.view.ClickView;
 import com.keepassdroid.view.GroupViewOnlyView;
 
@@ -101,6 +98,10 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 		setResult(KeePass.EXIT_NORMAL);
 
 		styleScrollBars();
+
+		// Exclude actionbar from transitions
+		View decor = getWindow().getDecorView();
+		getSupportActionBar();
 		
 	}
 	

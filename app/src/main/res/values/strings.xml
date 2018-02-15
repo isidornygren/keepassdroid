@@ -203,6 +203,12 @@
     <string name="fingerprint_error">Fingerprint problem</string>
     <string name="store_with_fingerprint">Use fingerprint to store this password</string>
     <string name="no_password_stored">No password stored yet for this database</string>
+	<string name="entry">entry</string>
+	<string name="entries">entries</string>
+	<plurals name="entries">
+		<item quantity="one">@string/entry</item>
+		<item quantity="other">@string/entries</item>
+	</plurals>
 
     <string-array name="clipboard_timeout_options">
     	<item>30 seconds</item>
