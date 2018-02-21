@@ -19,12 +19,14 @@
  */
 package com.keepassdroid;
 
+import android.os.Bundle;
+
 import com.keepassdroid.timeout.TimeoutHelper;
 
 public class LockingClosePreferenceActivity extends LockingPreferenceActivity {
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 
 		TimeoutHelper.checkShutdown(this);

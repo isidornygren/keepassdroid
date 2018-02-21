@@ -25,7 +25,7 @@ import android.text.method.MovementMethod;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class TextViewSelect extends TextView {
+public class TextViewSelect extends android.support.v7.widget.AppCompatTextView {
 
 	public TextViewSelect(Context context) {
 		this(context, null);

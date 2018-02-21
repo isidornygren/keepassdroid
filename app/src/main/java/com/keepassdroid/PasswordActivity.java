@@ -46,6 +46,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -208,9 +209,18 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
         confirmationView = (TextView) findViewById(R.id.fingerprint_label);
         passwordView = (EditText) findViewById(R.id.password);
 
+        // Add back button to action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         new InitTask().execute(i);
 
         initForFingerprint();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp(){
+       finish();
+       return true;
     }
 
     @Override
@@ -337,7 +347,7 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
 
                     } else if (mode == Cipher.DECRYPT_MODE) {
 
-                        // retrieve the encrypted value from preferences
+                        // retrieve the encrypted value from preferences_bak
                         final String encryptedValue = prefsNoBackup.getString(getPreferenceKeyValue(), null);
                         if (encryptedValue != null) {
                             fingerPrintHelper.decryptData(encryptedValue);
@@ -393,19 +403,19 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
     }
 
     private void setFingerPrintVisibilty(int vis) {
-        ImageButton browse = (ImageButton) findViewById(R.id.browse_button);
-        EditText fn = (EditText) findViewById(R.id.pass_keyfile);
+        Button browse = (Button) findViewById(R.id.browse_button);
+        TextView fn = (TextView) findViewById(R.id.pass_keyfile);
 
-        RelativeLayout.LayoutParams browseParams = (RelativeLayout.LayoutParams) browse.getLayoutParams();
-        RelativeLayout.LayoutParams fnParams = (RelativeLayout.LayoutParams) fn.getLayoutParams();
+        LinearLayout.LayoutParams browseParams = (LinearLayout.LayoutParams) browse.getLayoutParams();
+        LinearLayout.LayoutParams fnParams = (LinearLayout.LayoutParams) fn.getLayoutParams();
         int layoutBelow;
         if (vis == View.GONE) {
             layoutBelow = R.id.password;
         } else {
             layoutBelow = R.id.fingerprint_label;
         }
-        browseParams.addRule(RelativeLayout.BELOW, layoutBelow);
-        fnParams.addRule(RelativeLayout.BELOW, layoutBelow);
+        // browseParams.addRule(RelativeLayout.BELOW, layoutBelow);
+        // fnParams.addRule(RelativeLayout.BELOW, layoutBelow);
         fingerprintView.setVisibility(vis);
         confirmationView.setVisibility(vis);
     }
@@ -578,11 +588,6 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_about:
-                AboutDialog dialog = new AboutDialog(this);
-                dialog.show();
-                return true;
-
             case R.id.menu_app_settings:
                 AppSettingsActivity.Launch(this);
                 return true;
@@ -720,7 +725,7 @@ public class PasswordActivity extends LockingActivity implements FingerPrintHelp
             CheckBox defaultCheck = (CheckBox) findViewById(R.id.default_database);
             defaultCheck.setOnCheckedChangeListener(new DefaultCheckChange());
 
-            ImageButton browse = (ImageButton) findViewById(R.id.browse_button);
+            Button browse = (Button) findViewById(R.id.browse_button);
             browse.setOnClickListener(new View.OnClickListener() {
 
                 public void onClick(View v) {

@@ -20,6 +20,7 @@
 package com.keepassdroid.view;
 
 
+import android.content.res.Resources;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ import com.keepassdroid.app.App;
 import com.keepassdroid.database.PwGroup;
 import com.keepassdroid.database.PwGroupV3;
 import com.keepassdroid.settings.PrefsUtil;
+
+import java.util.Locale;
 
 
 public class PwGroupView extends ClickView {
@@ -57,26 +60,25 @@ public class PwGroupView extends ClickView {
 		super(act);
 		mAct = act;
 		
-		View gv = View.inflate(act, R.layout.group_list_entry, null);
-		
-		mTv = (TextView) gv.findViewById(R.id.group_text);
-		float size = PrefsUtil.getListTextSize(act); 
-		mTv.setTextSize(size);
-		
-		TextView label = (TextView) gv.findViewById(R.id.group_label);
-		label.setTextSize(size-8);
-		
+		View gv = View.inflate(act, R.layout.entry_list_entry, null);
+
+		// Set name of group
+		mTv = gv.findViewById(R.id.entry_text);
+		// Set description of group
+		TextView desc = gv.findViewById(R.id.entry_description);
+		Resources res = getResources();
+
+		String description = String.format(Locale.getDefault(), "(%d) %s", pw.getChildrenCount(), res.getQuantityString(R.plurals.entries, pw.getChildrenCount()));
+		desc.setText(description);
+
 		populateView(gv, pw);
-		
-		LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		
-		addView(gv, lp);
+		addView(gv);
 	}
 	
 	private void populateView(View gv, PwGroup pw) {
 		mPw = pw;
 		
-		ImageView iv = (ImageView) gv.findViewById(R.id.group_icon);
+		ImageView iv = gv.findViewById(R.id.entry_icon);
 		App.getDB().drawFactory.assignDrawableTo(iv, getResources(), pw.getIcon());
 		
 		mTv.setText(pw.getName());

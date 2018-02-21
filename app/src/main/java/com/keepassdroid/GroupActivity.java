@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -134,33 +135,25 @@ public abstract class GroupActivity extends GroupBaseActivity {
 		
 		setupButtons();
 
+		// Remove shadow from top shadow bar
+		getSupportActionBar().setElevation(0);
+
 		if ( addGroupEnabled && addEntryEnabled ) {
 			setContentView(new GroupAddEntryView(this));
 		} else if ( addGroupEnabled ) {
 			setContentView(new GroupRootView(this));
 		} else if ( addEntryEnabled ) {
 			setContentView(new GroupAddEntryView(this));
-			Button addGroup = (Button) findViewById(R.id.add_group);
-			addGroup.setVisibility(View.GONE);
+			MenuItem addGroup = findViewById(R.id.menu_add_group);
+			addGroup.setVisible(false);
 		} else {
 			setContentView(new GroupViewOnlyView(this));
 		}
 		Log.w(TAG, "Set view");
-
-		if ( addGroupEnabled ) {
-			// Add Group button
-			Button addGroup = (Button) findViewById(R.id.add_group);
-			addGroup.setOnClickListener(new View.OnClickListener() {
-
-				public void onClick(View v) {
-					GroupEditActivity.Launch(GroupActivity.this);
-				}
-			});
-		}
 		
 		if ( addEntryEnabled ) {
 			// Add Entry button
-			Button addEntry = (Button) findViewById(R.id.add_entry);
+			FloatingActionButton addEntry = findViewById(R.id.add_entry);
 			addEntry.setOnClickListener(new View.OnClickListener() {
 	
 				public void onClick(View v) {

@@ -17,20 +17,37 @@
   You should have received a copy of the GNU General Public License
   along with KeePassDroid.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-  	<TextView android:id="@+id/file_listtop" 
-  	  android:layout_width="fill_parent"
-  	  android:layout_height="wrap_content"
-	  style="?android:attr/listSeparatorTextViewStyle"
-  	  android:text="@string/open_recent"/>
-  	<com.keepassdroid.view.FileNameView android:id="@+id/file_select"
-  	  android:layout_width="fill_parent"
-  	  android:layout_height="wrap_content"
-  	  android:layout_alignParentBottom="true"
-  	/>
-  	<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="@dimen/margin_medium">
+
+	<com.keepassdroid.view.FileNameView
+		android:id="@+id/file_select"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+	</com.keepassdroid.view.FileNameView>
+
+	<TextView
+		android:id="@+id/file_listtop"
+		style="?android:attr/listSeparatorTextViewStyle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/open_recent" />
+
+	<ListView
+		android:id="@+id/file_list"
+		style="@android:style/Widget.DeviceDefault.Light.ListView"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+	</ListView>
+
+</LinearLayout>
+
+	<!--
   	<Button android:id="@+id/open"
   	  android:text="@string/menu_open"
   	  android:layout_height="wrap_content"
@@ -65,9 +82,3 @@
 	  style="?android:attr/listSeparatorTextViewStyle"
 	  android:text="@string/enter_filename"/>
 	-->
-  	<ListView android:id="@+id/file_list"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:layout_below="@id/file_listtop"
-      android:layout_above="@id/file_select"/>
-</RelativeLayout>

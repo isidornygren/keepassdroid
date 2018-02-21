@@ -63,12 +63,9 @@ public class FileNameView extends RelativeLayout {
 		if (warning != -1) {
 			tv.setText(warning);
 			tv.setVisibility(VISIBLE);
-			
-			lp.addRule(RelativeLayout.BELOW, R.id.label_warning);
 		} else {
-			tv.setVisibility(INVISIBLE);
+			tv.setVisibility(GONE);
 		}
 		
-		label.setLayoutParams(lp);
 	}
 }

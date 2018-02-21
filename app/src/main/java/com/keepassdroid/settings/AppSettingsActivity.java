@@ -21,11 +21,9 @@ package com.keepassdroid.settings;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceManager;
 
 import com.android.keepass.R;
 import com.keepassdroid.Database;
@@ -46,27 +44,27 @@ public class AppSettingsActivity extends LockingClosePreferenceActivity {
 	}
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		Preference keyFile = findPreference(getString(R.string.keyfile_key));
-		keyFile.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-			
+		keyFile.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				Boolean value = (Boolean) newValue;
-				
+
 				if ( ! value.booleanValue() ) {
 					App.getFileHistory().deleteAllKeys();
 				}
-				
+
 				return true;
 			}
 		});
 		
 		Preference recentHistory = findPreference(getString(R.string.recentfile_key));
-		recentHistory.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+		recentHistory.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 			
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
 				Boolean value = (Boolean) newValue;
@@ -109,7 +107,7 @@ public class AppSettingsActivity extends LockingClosePreferenceActivity {
 	}
 	
 	@Override
-	protected void onStop() {
+	public void onStop() {
 		backupManager.dataChanged();
 		
 		super.onStop();

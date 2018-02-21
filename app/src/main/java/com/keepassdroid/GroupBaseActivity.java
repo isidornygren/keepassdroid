@@ -20,7 +20,6 @@
 package com.keepassdroid;
 
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -37,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.keepass.KeePass;
 import com.android.keepass.R;
@@ -47,7 +45,6 @@ import com.keepassdroid.compat.EditorCompat;
 import com.keepassdroid.database.PwGroup;
 import com.keepassdroid.database.edit.OnFinish;
 import com.keepassdroid.settings.AppSettingsActivity;
-import com.keepassdroid.utils.Util;
 import com.keepassdroid.view.ClickView;
 import com.keepassdroid.view.GroupViewOnlyView;
 
@@ -101,6 +98,10 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 		setResult(KeePass.EXIT_NORMAL);
 
 		styleScrollBars();
+
+		// Exclude actionbar from transitions
+		View decor = getWindow().getDecorView();
+		getSupportActionBar();
 		
 	}
 	
@@ -110,10 +111,14 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 		mList.setTextFilterEnabled(true);
 		
 	}
-	
+
+	/**
+	 * Sets the title in the second toolbar at the top
+	 */
 	protected void setGroupTitle() {
 		if ( mGroup != null ) {
-			String name = mGroup.getName();
+			//String name = mGroup.getName();
+			String name = mGroup.getDirectory();
 			if ( name != null && name.length() > 0 ) {
 				TextView tv = (TextView) findViewById(R.id.group_name);
 				if ( tv != null ) {
@@ -202,33 +207,24 @@ public abstract class GroupBaseActivity extends LockCloseListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch ( item.getItemId() ) {
-		case R.id.menu_donate:
-			try {
-				Util.gotoUrl(this, R.string.donate_url);
-			} catch (ActivityNotFoundException e) {
-				Toast.makeText(this, R.string.error_failed_to_launch_link, Toast.LENGTH_LONG).show();
-				return false;
-			}
-			
-			return true;
+
 		case R.id.menu_lock:
 			App.setShutdown();
 			setResult(KeePass.EXIT_LOCK);
 			finish();
 			return true;
-		
+		case R.id.menu_add_group:
+			GroupEditActivity.Launch(GroupBaseActivity.this);
+			return true;
 		case R.id.menu_search:
 			onSearchRequested();
 			return true;
-			
 		case R.id.menu_app_settings:
 			AppSettingsActivity.Launch(this);
 			return true;
-
 		case R.id.menu_change_master_key:
 			setPassword();
 			return true;
-			
 		case R.id.menu_sort:
 			toggleSort();
 			return true;

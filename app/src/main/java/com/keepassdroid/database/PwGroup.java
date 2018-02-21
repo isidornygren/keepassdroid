@@ -47,6 +47,25 @@ public abstract class PwGroup {
 		return icon;
 	}
 
+	/**
+	 * Gets the number of local (not recursive) children
+	 * @return integer number of local children
+	 */
+	public int getChildrenCount(){
+		return childGroups.size() + childEntries.size();
+	}
+	/**
+	 * Gets the directory as a string in the form /root/directory
+	 * @return String the directory in the form of a string
+	 */
+	public String getDirectory() {
+		String d = "";
+		if(getParent() != null) {
+			d = getParent().getDirectory() + "/";
+		}
+		return d + getName();
+	}
+
 	public void sortGroupsByName() {
 		Collections.sort(childGroups, new GroupNameComparator());
 	}

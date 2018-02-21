@@ -27,6 +27,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.keepass.KeePass;
@@ -34,21 +36,28 @@ import com.android.keepass.R;
 import com.keepassdroid.password.PasswordGenerator;
 
 public class GeneratePasswordActivity extends LockCloseActivity {
-	private static final int[] BUTTON_IDS = new int [] {R.id.btn_length6, R.id.btn_length8, R.id.btn_length12, R.id.btn_length16};
-	
+
 	public static void Launch(Activity act) {
 		Intent i = new Intent(act, GeneratePasswordActivity.class);
 		
 		act.startActivityForResult(i, 0);
 	}
-	
-	private OnClickListener lengthButtonsListener = new OnClickListener() {
-	    public void onClick(View v) {
-	    	Button button = (Button) v;
-	    	
-	    	EditText editText = (EditText) findViewById(R.id.length);
-	    	editText.setText(button.getText());
-	    }
+
+	private SeekBar.OnSeekBarChangeListener lengthSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+			// Set the length of the password
+			TextView length = (TextView) findViewById(R.id.password_length);
+			length.setText(String.valueOf(progress + 8));
+		}
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {}
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			// Generate a new password on seekbar drop
+			fillPassword();
+		}
 	};
 	
 	@Override
@@ -56,12 +65,12 @@ public class GeneratePasswordActivity extends LockCloseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.generate_password);
 		setResult(KeePass.EXIT_NORMAL);
-		
-		for (int id : BUTTON_IDS) {
-        	Button button = (Button) findViewById(id);
-        	button.setOnClickListener(lengthButtonsListener);
-		}
-		
+
+		// Select length of password dependent on the seekbar
+		SeekBar seekBar = (SeekBar) findViewById(R.id.lengthSeekBar);
+		seekBar.setOnSeekBarChangeListener(lengthSeekBarListener);
+		seekBar.setProgress(8); // Default seekbar value 8+8 = 16
+
 		Button genPassButton = (Button) findViewById(R.id.generate_password_button);
         genPassButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -107,8 +116,8 @@ public class GeneratePasswordActivity extends LockCloseActivity {
     	String password = "";
     	
     	try {
-    		int length = Integer.valueOf(((EditText) findViewById(R.id.length)).getText().toString());
-    		
+    		int length = Integer.valueOf(((TextView) findViewById(R.id.password_length)).getText().toString());
+
     		((CheckBox) findViewById(R.id.cb_uppercase)).isChecked();
         	
         	PasswordGenerator generator = new PasswordGenerator(this);
@@ -117,11 +126,11 @@ public class GeneratePasswordActivity extends LockCloseActivity {
 	    			((CheckBox) findViewById(R.id.cb_uppercase)).isChecked(),
 	    			((CheckBox) findViewById(R.id.cb_lowercase)).isChecked(),
 	    			((CheckBox) findViewById(R.id.cb_digits)).isChecked(),
-	    			((CheckBox) findViewById(R.id.cb_minus)).isChecked(),
-	    			((CheckBox) findViewById(R.id.cb_underline)).isChecked(),
-	    			((CheckBox) findViewById(R.id.cb_space)).isChecked(),
 	    			((CheckBox) findViewById(R.id.cb_specials)).isChecked(),
-	    			((CheckBox) findViewById(R.id.cb_brackets)).isChecked());
+	    			((CheckBox) findViewById(R.id.cb_specials)).isChecked(),
+	    			((CheckBox) findViewById(R.id.cb_specials)).isChecked(),
+	    			((CheckBox) findViewById(R.id.cb_specials)).isChecked(),
+	    			((CheckBox) findViewById(R.id.cb_specials)).isChecked());
     	} catch (NumberFormatException e) {
     		Toast.makeText(this, R.string.error_wrong_length, Toast.LENGTH_LONG).show();
 		} catch (IllegalArgumentException e) {

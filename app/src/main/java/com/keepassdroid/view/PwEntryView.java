@@ -57,25 +57,23 @@ public class PwEntryView extends ClickView {
 		mAct = act;
 		
 		View ev = View.inflate(mAct, R.layout.entry_list_entry, null);
-		mTv = (TextView) ev.findViewById(R.id.entry_text);
-		mTv.setTextSize(PrefsUtil.getListTextSize(act));
-		
+		mTv = ev.findViewById(R.id.entry_text);
+
 		populateView(ev, pw, pos);
-		
-		LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		
-		addView(ev, lp);
+		addView(ev);
 
 	}
 	
 	private void populateView(View ev, PwEntry pw, int pos) {
+		// Set password title
 		mPw = pw;
 		mPos = pos;
-		
-		ImageView iv = (ImageView) ev.findViewById(R.id.entry_icon);
-		App.getDB().drawFactory.assignDrawableTo(iv, getResources(), pw.getIcon());
-		
-		mTv.setText(mPw.getDisplayTitle());
+
+		TextView title = ev.findViewById(R.id.entry_text);
+		title.setText(pw.getDisplayTitle());
+		// Set password url
+		TextView url = ev.findViewById(R.id.entry_description);
+		url.setText(pw.getUrl());
 	}
 	
 	public void convertView(PwEntry pw, int pos) {

@@ -20,7 +20,6 @@
 package com.keepassdroid.fileselect;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -28,12 +27,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -46,14 +45,12 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.keepass.R;
-import com.keepassdroid.AboutDialog;
 import com.keepassdroid.GroupActivity;
 import com.keepassdroid.PasswordActivity;
 import com.keepassdroid.ProgressTask;
@@ -77,7 +74,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-public class FileSelectActivity extends Activity {
+public class FileSelectActivity extends AppCompatActivity {
 
 	private static final int MY_PERMISSIONS_REQUEST_EXTERNAL_STORAGE = 111;
 	private ListView mList;
@@ -106,7 +103,7 @@ public class FileSelectActivity extends Activity {
 			setContentView(R.layout.file_selection_no_recent);
 		}
 
-		mList = (ListView)findViewById(R.id.file_list);
+		mList = findViewById(R.id.file_list);
 
 		mList.setOnItemClickListener(
 				new AdapterView.OnItemClickListener() {
@@ -118,7 +115,7 @@ public class FileSelectActivity extends Activity {
 		);
 
 		// Open button
-		Button openButton = (Button) findViewById(R.id.open);
+		Button openButton = findViewById(R.id.open);
 		openButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -212,7 +209,7 @@ public class FileSelectActivity extends Activity {
 
 		});
 		
-		ImageButton browseButton = (ImageButton) findViewById(R.id.browse_button);
+		Button browseButton = findViewById(R.id.browse_button);
 		browseButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -331,9 +328,9 @@ public class FileSelectActivity extends Activity {
 
 	private void fillData() {
 		// Set the initial value of the filename
-		EditText filename = (EditText) findViewById(R.id.file_filename);
+		TextView filename = findViewById(R.id.file_filename);
 		filename.setText(Environment.getExternalStorageDirectory().getAbsolutePath() + getString(R.string.default_file_path));
-		
+
 		mAdapter = new ArrayAdapter<String>(this, R.layout.file_row, R.id.file_filename, fileHistory.getDbList());
 		mList.setAdapter(mAdapter);
 	}
@@ -498,21 +495,6 @@ public class FileSelectActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_donate:
-			try {
-				Util.gotoUrl(this, R.string.donate_url);
-			} catch (ActivityNotFoundException e) {
-				Toast.makeText(this, R.string.error_failed_to_launch_link, Toast.LENGTH_LONG).show();
-				return false;
-			}
-			
-			return true;
-			
-		case R.id.menu_about:
-			AboutDialog dialog = new AboutDialog(this);
-			dialog.show();
-			return true;
-			
 		case R.id.menu_app_settings:
 			AppSettingsActivity.Launch(this);
 			return true;
